@@ -51,6 +51,11 @@
         }
     },
     "config":{
-        "secure-http":false
+        "secure-http":false,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "platform-check": false
     }
 }
