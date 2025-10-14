@@ -1,0 +1,52 @@
+<?php
+/**
+ * Phtml List Subscription
+ *
+ * @author      Open Source Team
+ * @copyright   2021 Pagar.me (https://pagar.me)
+ * @license     https://pagar.me Copyright
+ *
+ * @link        https://pagar.me
+ */
+
+$i = 0;
+/* @var \Pagarme\Pagarme\Block\Customer\Subscription $block */
+?>
+<div>
+    <table class="table">
+
+        <thead>
+        <tr>
+            <th><?= __('Id') ?></th>
+            <th><?= __('Order') ?></th>
+            <th><?= __('Total cycle counting of a product') ?></th>
+            <th><?= __('Interval') ?></th>
+            <th><?= __('Status') ?></th>
+            <th><?= __('Subscription created at') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($block->getAllSubscriptionRecurrenceCoreByCustomerId() as $item) : ?>
+            <?php $i++; ?>
+            <?php
+                $url = $this->getBaseUrl() . 'pagarme/customer/invoice/?code='. $item->getPagarmeId()->getValue();
+                $status = $item->getStatus()->getStatus();
+                $intervalType = $item->getIntervalType();
+            ?>
+            <tr>
+                <td><?= $i ?></td>
+                <td><?= $item->getCode() ?></td>
+                <td><?= $block->getHighestProductCycle($item) ?></td>
+                <td><?= $block->getInterval($item) ?></td>
+                <td><?= __($status) ?></td>
+                <td><?= $block->getSubscriptionCreatedDate($item)  ?></td>
+                <td>
+                    <button onclick="location.href = '<?= $url ?>';" id="details">
+                        <?= __("View Details") ?>
+                    </button>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

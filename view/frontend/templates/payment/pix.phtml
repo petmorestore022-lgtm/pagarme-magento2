@@ -1,0 +1,64 @@
+<?php
+/**
+ * @var \Pagarme\Pagarme\Block\Payment\Pix $block
+ */
+if ($block->showPixInformation()):
+    ?>
+    <hr />
+    <div class="pix-wrapper">
+        <div class="pix-logo-wrapper">
+            <img
+                class="pagarme-pix-logo"
+                src="<?= $block->getLogoSrc(); ?>"
+                alt="pix logo"
+            />
+        </div>
+        <div class="qr-code-wrapper">
+            <img width="200" src="<?= $block->getPixInfo()->getQrCodeUrl(); ?>" alt="pix qr code" />
+        </div>
+        <div class="copy-qr-code-wrapper">
+            <div class="copy-inline">
+                <svg aria-hidden="true"
+                     focusable="false"
+                     data-prefix="fas"
+                     data-icon="copy"
+                     class="svg-inline--fa fa-copy fa-w-14 copy-pix"
+                     role="img"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 448 512">
+                    <path fill="blue"
+                          d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z">
+                    </path>
+                </svg>
+                <a class="copy-pix"><?= __('Copy PIX code'); ?></a>
+                <input id="pagarme_qr_code" type="text" value="<?= $block->getPixInfo()->getQrCode() ?>" />
+            </div>
+        </div>
+        <div class="pix-instructions-wrapper">
+            <div class="pix-instruction">
+                <div><?= __('Open your bank app'); ?></div>
+                <div class="pix-instruction-number">1</div>
+            </div>
+
+            <div class="pix-instruction">
+                <div><?= __('Scan the QR Code'); ?></div>
+                <div class="pix-instruction-number">2</div>
+            </div>
+
+            <div class="pix-instruction">
+                <div><?= __('Confirm the payment'); ?></div>
+                <div class="pix-instruction-number">3</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+             "*": {
+                "pixCheckoutSuccess": {
+                    "errorCopyMessage": "<?= $block->getErrorCopyMessage(); ?>",
+                    "successCopyMessage": "<?= $block->getSuccessMessage(); ?>"
+                }
+            }
+        }
+    </script>
+<?php endif ?>

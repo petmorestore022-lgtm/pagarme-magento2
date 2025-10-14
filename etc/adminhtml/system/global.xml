@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="pagarme_pagarme_global" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label">
+        <label>General Settings</label>
+        <field id="hub_integration" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="1" translate="label" type="hidden">
+            <label>Pagar.me integration</label>
+            <frontend_model>Pagarme\Pagarme\Block\Adminhtml\System\Config\Form\Field\HubIntegration</frontend_model>
+            <config_path>pagarme_pagarme/hub/install_id</config_path>
+        </field>
+        <field id="hub_environment" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="2" translate="label" type="label">
+            <label>Integration Environment</label>
+            <frontend_model>Pagarme\Pagarme\Block\Adminhtml\System\Config\Form\Field\HubEnvironment</frontend_model>
+        </field>
+        <field id="module_version" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="label">
+            <label>Module Version</label>
+            <comment/>
+            <frontend_model>Pagarme\Pagarme\Block\Adminhtml\System\Config\Form\Field\ModuleVersion</frontend_model>
+        </field>
+        <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="select">
+            <label>Enable this Solution</label>
+            <comment />
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>pagarme_pagarme/global/active</config_path>
+        </field>
+        <field id="multibuyer" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="select">
+            <label>Enable Multi Buyer</label>
+            <comment />
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/pagarme_multibuyer/active</config_path>
+        </field>
+        <field id="is_gateway_integration_type" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+            <label>Enable Advanced Settings</label>
+            <comment><![CDATA[<p><strong style='color:red'>Warning!</strong> Configurations that only work for <strong>Gateway</strong> customers, who have a direct contract with an acquirer.</p>]]></comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>pagarme_pagarme/global/is_gateway_integration_type</config_path>
+            <frontend_model>Pagarme\Pagarme\Block\Adminhtml\Form\Field\EnableAdvanceSettings</frontend_model>
+        </field>
+        <field id="create_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+            <label>Always creates order</label>
+            <comment><![CDATA[Create Magento's order even with failed payments]]></comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>pagarme_pagarme/global/create_order</config_path>
+        </field>
+        <field id="active_send_email" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="select">
+            <label>Send order status changes by e-mail</label>
+            <comment><![CDATA[Send an e-mail every time when an order status is changed by a Pagar.me's webhook. <p><strong style='color:red'>Warning!</strong> Make sure you have set up your mail server correctly before enable it, otherwise you will run the risk of slowdowns and crashes of your platform.</p>]]></comment>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>pagarme_pagarme/global/sendmail</config_path>
+        </field>
+        <field id="partner_public_app_key" type="string">
+            <config_path>pagarme_pagarme/hub/partner_public_app_key</config_path>
+        </field>
+    </group>
+</include>

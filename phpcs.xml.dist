@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Open Source Team
+ * @copyright   2021 Pagar.me (https://pagar.me)
+ * @license     https://pagar.me Copyright
+ *
+ * @link        https://pagar.me
+ */
+-->
+<ruleset name="Pagarme_Coding_Standarts">
+    <description>Pagar.me coding standards</description>
+    <arg value="p"/>
+    <arg name="colors"/>
+    <rule ref="./vendor/magento-ecg/coding-standard/EcgM2/ruleset.xml"/>
+
+	<exclude-pattern>*/Test/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>

@@ -1,0 +1,77 @@
+<?php
+/* @var \Pagarme\Pagarme\Block\Payment\Info\Billet $this */
+/**
+ * @var \Pagarme\Core\Kernel\Aggregates\Transaction $lastTransaction
+ */
+$lastTransactions = $this->getTransactionInfo();
+$postDataBillet = null;
+if (array_key_exists('billet', $lastTransactions)) {
+    $postDataBillet = (json_decode($lastTransactions['billet']->getPostData()->tran_data, true));
+}
+?>
+<?php if ($this->getCcType()): ?>
+    <span><?php echo __($this->getTitle()); ?></span>
+    <br/>
+    <br/>
+    <strong class="box-title">
+        <span><?php echo __('Credit Card'); ?></span>
+    </strong>
+    <br/>
+    <span>
+        <b><?php echo __('Amount') ?>: </b>
+        <?php echo 'R$ ' . number_format(floatval($this->getCcAmountWithTax()), 2, ',', '.'); ?>
+    </span>
+    <br/>
+    <span><b><?php echo __('Brand'); ?>: </b><?php echo $this->getCcBrand(); ?></span>
+    <br/>
+    <span><b><?php echo __('Number'); ?>: </b><?php echo $this->getCardLast4(); ?></span>
+    <br/>
+    <span><b><?php echo __('Installments'); ?>: </b><?php echo $this->getInstallments(); ?></span>
+    <br/>
+
+    <?php if (!empty($lastTransactions['creditCard']['authorized'])) {?>
+        <span><b><?= __('NSU'); ?>: </b><?= $lastTransactions['creditCard']['authorized'] ?></span>
+        <br/>
+    <?php } ?>
+
+    <?php if (!empty($lastTransactions['creditCard']['captured'])) {?>
+        <span><b><?= __('NSU from capture'); ?>: </b><?= $lastTransactions['creditCard']['captured'] ?></span>
+        <br/>
+    <?php } ?>
+    <?php if (!empty($lastTransactions['creditCard']['tid'])) {?>
+        <span><b><?= __('TID'); ?>: </b><?= $lastTransactions['creditCard']['tid'] ?></span>
+    <?php } ?>
+<?php endif ?>
+
+    <br/>
+    <br/>
+    <strong class="box-title">
+        <span><?php echo __('Billet'); ?></span>
+    </strong>
+
+<?php if ($postDataBillet !== null && isset($postDataBillet['nosso_numero'])) { ?>
+    <br/>
+    <span>
+        <b><?= __('Our Number'); ?>: </b><?= $postDataBillet['nosso_numero'] ?>
+    </span>
+    <br/>
+<?php } ?>
+<?php if ($postDataBillet !== null && isset($postDataBillet['document_number'])) { ?>
+    <br/>
+    <span>
+        <b><?= __('Document Number'); ?>: </b><?= $postDataBillet['document_number'] ?>
+    </span>
+    <br/>
+    <br/>
+<?php } ?>
+
+<?php if ($this->getBilletUrl() && $this->getInfo()->getOrder()->getState() == 'new'): ?>
+    <span>
+        <b><?php echo __('Amount') ?>: </b>
+        <?php echo 'R$ ' . number_format(floatval($this->getBilletAmount()), 2, ',', '.'); ?>
+    </span>
+    <br/>
+    <br/>
+    <a class="action tocart primary" href="<?php echo $this->getBilletUrl() ?>"
+       target="_blank"><?php echo __('Print Billet') ?></a>
+<?php endif ?>

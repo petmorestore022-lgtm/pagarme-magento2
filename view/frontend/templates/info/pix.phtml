@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var Pagarme\Pagarme\Block\Payment\Pix $this
+ *
+ */
+
+?>
+<p><?=__($this->getTitle())?></p>
+<?php if ($this->showPrintButton()) : ?>
+    <img alt="pix qrcode" width="145px" src="<?=$this->getPixInfo()->getQrCodeUrl()?>" />
+    <p><?=$this->getPixInfo()->getQrCode()?></p>
+<?php endif ?>

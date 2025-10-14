@@ -1,0 +1,16 @@
+<?php
+/**
+ * Class billet
+ *
+ * @author      Open Source Team
+ * @copyright   2021 Pagar.me (https://pagar.me)
+ * @license     https://pagar.me Copyright
+ *
+ * @link        https://pagar.me
+ */
+?>
+
+<?php if ($this->getBilletUrl()): ?>
+    <hr />
+    <a class="action tocart primary" id="pagarme-link-boleto" href="<?php echo $this->getBilletUrl() ?>" target="_blank"><?php echo __('Print Billet') ?></a>
+<?php endif ?>

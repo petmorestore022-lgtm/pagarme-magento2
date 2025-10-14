@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var Pagarme\Pagarme\Block\Payment\Info\BilletCreditCard $block
+ */
+?>
+    <?= $block->getCreditCardInformation() ?>
+    <hr />
+    <strong class="box-title">
+        <span><?= __('Billet'); ?></span>
+    </strong>
+    <p><b><?= __('Amount') ?>: </b><?= $block->getBilletAmount(); ?></p>
+    <?= $block->getPrintBillet() ?>

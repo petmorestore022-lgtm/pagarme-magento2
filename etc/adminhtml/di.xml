@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Open Source Team
+ * @copyright   2021 Pagar.me (https://pagar.me)
+ * @license     https://pagar.me Copyright
+ *
+ * @link        https://pagar.me
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\GroupedProduct\Model\Product\Type\Grouped" type="Magento\GroupedProduct\Model\Product\Type\Grouped\Backend" />
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Sidebar\AbstractSidebar">
+        <plugin name="GroupedProduct" type="Magento\GroupedProduct\Block\Adminhtml\Order\Create\Sidebar" sortOrder="100"/>
+    </type>
+    <type name="Magento\Catalog\Model\Product\CopyConstructor\Composite">
+        <arguments>
+            <argument name="constructors" xsi:type="array">
+                <item name="grouped" xsi:type="string">Magento\GroupedProduct\Model\Product\CopyConstructor\Grouped</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\AdminOrder\Product\Quote\Initializer">
+        <plugin name="sales_adminorder_quote_initializer_plugin" type="Pagarme\Pagarme\Plugin\Sales\AdminOrder\Product\Quote\Initializer" sortOrder="100"/>
+    </type>
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="grouped-custom-options" xsi:type="array">
+                    <item name="class" xsi:type="string">Magento\GroupedProduct\Ui\DataProvider\Product\Form\Modifier\CustomOptions</item>
+                    <item name="sortOrder" xsi:type="number">72</item>
+                </item>
+                <item name="plan" xsi:type="array">
+                    <item name="class" xsi:type="string">Pagarme\Pagarme\Ui\DataProvider\Product\Form\Modifier\Plan</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                </item>
+                <item name="grouped_stock_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Magento\GroupedProduct\Ui\DataProvider\Product\Form\Modifier\StockData</item>
+                    <item name="sortOrder" xsi:type="number">121</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Notification\MessageList">
+        <arguments>
+            <argument name="messages" xsi:type="array">
+                <item name="pagarme_notifications" xsi:type="string">Pagarme\Pagarme\Model\Notifications</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Gateway Fields -->
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Field\BilletGatewayField" type="Pagarme\Pagarme\Block\Adminhtml\Form\Field\GatewayField">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_billet</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Field\CreditCardGatewayField" type="Pagarme\Pagarme\Block\Adminhtml\Form\Field\GatewayField">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_creditcard</argument>
+        </arguments>
+    </virtualType>
+    <!-- SoftDescriptor Fields -->
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Field\CreditCardSoftDescriptor" type="Pagarme\Pagarme\Block\Adminhtml\Form\Field\SoftDescriptor">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_creditcard</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Field\DebitCardSoftDescriptor" type="Pagarme\Pagarme\Block\Adminhtml\Form\Field\SoftDescriptor">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_debit</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Field\VoucherSoftDescriptor" type="Pagarme\Pagarme\Block\Adminhtml\Form\Field\SoftDescriptor">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_voucher</argument>
+        </arguments>
+    </virtualType>
+    <!-- CustomPayments Fieldset -->
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Fieldset\DebitCardFieldset" type="Pagarme\Pagarme\Block\Adminhtml\Form\Fieldset\CustomPaymentFieldset">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_debit</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Pagarme\Pagarme\Block\Adminhtml\Form\Fieldset\VoucherFieldset" type="Pagarme\Pagarme\Block\Adminhtml\Form\Fieldset\CustomPaymentFieldset">
+        <arguments>
+            <argument name="paymentMethodName" xsi:type="string">pagarme_voucher</argument>
+        </arguments>
+    </virtualType>
+</config>

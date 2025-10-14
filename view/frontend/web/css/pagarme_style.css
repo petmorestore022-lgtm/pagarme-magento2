@@ -1,0 +1,43 @@
+.payment-full{
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+ }
+.form-creditcard-one, .form-creditcard-two {
+    padding-right: 30px;
+    box-sizing: border-box;
+}
+
+.checkout-payment-method .payment-method-content {
+    padding: 0;
+}
+.checkout-payment-method .checkout-billing-address {
+    margin: 20px 0;
+}
+.actions-toolbar {
+    margin-bottom: 10px;
+}
+
+.multibuyer {
+    width: 335px;
+    display: none;
+}
+
+.field.hidden-element,
+.field-error.hidden-element {
+    display: none;
+}
+
+.field .control .fields .field .control .cc_saved_creditcards,
+.field .control .fields .field .control .cc_installments {
+    width: 335px;
+}
+
+.field .control .cc_amount,
+.field .control .cc_owner {
+    width: 225px;
+}
+
+.pagarme-pix-logo {
+    width: 120px;
+}

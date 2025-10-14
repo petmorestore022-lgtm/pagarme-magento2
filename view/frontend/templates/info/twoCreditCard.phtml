@@ -1,0 +1,26 @@
+<?php
+/**
+ * var Pagarme\Pagarme\Block\Payment\Info\TwoCreditCard $this
+ *
+ * @author      Open Source Team
+ * @copyright   2021 Pagar.me (https://pagar.me)
+ * @license     https://pagar.me Copyright
+ *
+ * @link        https://pagar.me
+ */
+?>
+<p><?= __($this->getTitle()); ?></p>
+<h3><?= __('First Card'); ?></h3>
+<p>
+    <b><?= __('Brand'); ?>:</b> <?= ucfirst($this->getCcTypeFirst()); ?><br/>
+    <b><?= __('Number'); ?>:</b> <?= $this->getFirstCardLast4(); ?><br/>
+    <b><?= __('Installments'); ?>:</b> <?= $this->getInstallmentsFirstCard(); ?><br/>
+    <b><?= __('Amount'); ?>:</b> <?= number_format(floatval($this->getFirstCardAmount()),2,',','.'); ?>
+</p>
+<h3><?= __('Second Card'); ?></h3>
+<p>
+    <b><?= __('Brand'); ?>:</b> <?= ucfirst($this->getCcTypeSecond()); ?><br/>
+    <b><?= __('Number'); ?>:</b> <?= $this->getSecondCardLast4(); ?><br/>
+    <b><?= __('Installments'); ?>:</b> <?= $this->getInstallmentsSecondCard(); ?><br/>
+    <b><?= __('Amount'); ?>:</b> <?= number_format(floatval($this->getSecondCardAmount()),2,',','.'); ?>
+</p>
