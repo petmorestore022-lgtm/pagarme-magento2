@@ -1,12 +1,12 @@
 {
-    "name": "pagarme/pagarme-magento2-module",
+    "name": "petmorestore022-lgtm/pagarme-magento2",
     "license": "MIT",
     "version": "2.7.1",
     "type": "magento2-module",
     "description": "Magento 2 Module Pagar.me",
     "require": {
         "php": ">=7.1",
-        "pagarme/ecommerce-module-core": "~2.8.0"
+        "petmorestore022-lgtm/pagarme-ecommerce-module-core":"^1.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5 | ^6 | ^7 | ^8 | ^9",
@@ -24,6 +24,12 @@
         "rregeer/phpunit-coverage-check": "^0.1.3",
         "mockery/mockery": "1.3.x-dev"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/petmorestore022-lgtm/pagarme-ecommerce-module-core"
+        }
+    ],
     "authors":[
         {
             "name":"Open Source Team"
