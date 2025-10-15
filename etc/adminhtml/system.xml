@@ -21,7 +21,7 @@
 				<include path="Pagarme_Pagarme::system/transaction/multipleactionscreditcardbillet.xml"/>
 				<include path="Pagarme_Pagarme::system/transaction/voucher.xml"/>
 				<include path="Pagarme_Pagarme::system/transaction/debit.xml"/>
-                <!-- <include path="Pagarme_Pagarme::system/recurrence.xml"/> -->
+                <include path="Pagarme_Pagarme::system/recurrence.xml"/>
                 <include path="Pagarme_Pagarme::system/marketplace.xml"/>
             </group>
         </section>
