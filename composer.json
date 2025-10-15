@@ -1,7 +1,7 @@
 {
     "name": "petmorestore022-lgtm/pagarme-magento2",
     "license": "MIT",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "type": "magento2-module",
     "description": "Magento 2 Module Pagar.me",
     "require": {
